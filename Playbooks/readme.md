@@ -8,6 +8,7 @@
 | [Import-TI-ThreatView_IPBloclist](./Import%20TI-ThreatView_IPBlockList/readme.md) | Imports the ThreatView IP Block list into Sentinel |
 | [Import-TI-ThreatView_DomainBlockList](./Import-TI-ThreatView_DomainBlockList/readme.md) | Imports the ThreatView Domain Block list into Sentinel |
 | [Import-TI-ThreatView_URLBloclist](./Import-TI-ThreatView_URLBlockList/readme.md) | Imports the ThreatView URL Block list into Sentinel |
+| [Import-TI-Proofpoint-Emerging-Threats-Compromised-Host](./Import-TI-Proofpoint-Emerging-Threats-Compromised-Hosts/readme.md) | Imports Proofpoint Emegring threats compromised hosts into Sentinel |
 
 ## Instructions
 
