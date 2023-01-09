@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/fc06fd5a-cf24-4ad7-b611-893e4b720e25')]", 
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/fc06fd5a-cf24-4ad7-b611-893e4b720e25')]", 
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules", 
+            "kind": "Scheduled", 
+            "apiVersion": "2022-10-01-preview", 
+            "properties": {
+                "displayName": "ADCS - The certificate manager denied a pending certificate request", 
+                "description": "4868 - The certificate manager denied a pending certificate request",  
+                "severity": "Low",  
+                "enabled": true,  
+                "query": "SecurityEvent\r\n| where EventID == 4868\r\n\r\n",
+                "queryFrequency": "PT5H",
+                "queryPeriod": "PT5H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,  
+                "tactics": [],
+                "techniques": [],
+                "incidentConfiguration": {  
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": true,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": null,
+                "sentinelEntitiesMappings": null
+            }
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/5aa238a5-b233-402e-aeec-c7b9237ec5c7')]", 
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/5aa238a5-b233-402e-aeec-c7b9237ec5c7')]", 
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules", 
+            "kind": "Scheduled", 
+            "apiVersion": "2022-10-01-preview", 
+            "properties": {
+                "displayName": "ADCS - Certificate Services restore completed", 
+                "description": "4879 - Certificate Services restore completed.",  
+                "severity": "Low",  
+                "enabled": true,  
+                "query": "SecurityEvent\r\n| where EventID == 4879\r\n\r\n",
+                "queryFrequency": "PT5H",
+                "queryPeriod": "PT5H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,  
+                "tactics": [],
+                "techniques": [],
+                "incidentConfiguration": {  
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": true,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": null,
+                "sentinelEntitiesMappings": null
+            }
+        }
+    ]
+}

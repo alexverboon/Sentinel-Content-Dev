@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/0b36ae17-9a57-4b42-8074-83fdc832e1c7')]", 
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/0b36ae17-9a57-4b42-8074-83fdc832e1c7')]", 
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules", 
+            "kind": "Scheduled", 
+            "apiVersion": "2022-10-01-preview", 
+            "properties": {
+                "displayName": "ADCS - The security permissions for Certificate Services changed", 
+                "description": "4882 - The security permissions for Certificate Services changed",  
+                "severity": "High",  
+                "enabled": true,  
+                "query": "SecurityEvent\r\n| where EventID == 4882\r\n\r\n",
+                "queryFrequency": "PT1H",
+                "queryPeriod": "PT1H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT1H",
+                "suppressionEnabled": false,  
+                "tactics": [],
+                "techniques": [],
+                "incidentConfiguration": {  
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": true,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT1H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": null,
+                "sentinelEntitiesMappings": null
+            }
+        }
+    ]
+}

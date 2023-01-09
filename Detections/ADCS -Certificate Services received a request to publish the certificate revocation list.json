@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/f0d47db7-645e-415a-b187-c33222828f7f')]", 
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/f0d47db7-645e-415a-b187-c33222828f7f')]", 
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules", 
+            "kind": "Scheduled", 
+            "apiVersion": "2022-10-01-preview", 
+            "properties": {
+                "displayName": "ADCS - Certificate Services received a request to publish the certificate revocation list", 
+                "description": "4871 - Certificate Services received a request to publish the certificate revocation list",  
+                "severity": "Low",  
+                "enabled": true,  
+                "query": "SecurityEvent\r\n| where EventID == 4871\r\n\r\n",
+                "queryFrequency": "PT5H",
+                "queryPeriod": "PT5H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,  
+                "tactics": [],
+                "techniques": [],
+                "incidentConfiguration": {  
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": true,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": null,
+                "sentinelEntitiesMappings": null
+            }
+        }
+    ]
+}

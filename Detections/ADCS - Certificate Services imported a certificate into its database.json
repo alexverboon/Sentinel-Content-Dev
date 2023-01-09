@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/61fa615e-727c-4a33-8763-c5f76963bb0a')]", 
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/61fa615e-727c-4a33-8763-c5f76963bb0a')]", 
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules", 
+            "kind": "Scheduled", 
+            "apiVersion": "2022-10-01-preview", 
+            "properties": {
+                "displayName": "ADCS - Certificate Services imported a certificate into its database", 
+                "description": "4884 - Certificate Services imported a certificate into its database",  
+                "severity": "Low",  
+                "enabled": true,  
+                "query": "SecurityEvent\r\n| where EventID == 4884\r\n\r\n",
+                "queryFrequency": "PT5H",
+                "queryPeriod": "PT5H",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,  
+                "tactics": [],
+                "techniques": [],
+                "incidentConfiguration": {  
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": true,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": null,
+                "customDetails": null,
+                "entityMappings": null,
+                "sentinelEntitiesMappings": null
+            }
+        }
+    ]
+}

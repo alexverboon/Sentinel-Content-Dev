@@ -1,4 +1,4 @@
-# mport-TI-Proofpoint-Emerging-Threats-Compromised-Host
+# Import-TI-Proofpoint-Emerging-Threats-Compromised-Host
 
 author: Alex Verboon
 

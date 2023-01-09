@@ -50,7 +50,7 @@
         }
     },    
 "PlaybookName": {
-"defaultValue": "Import-TI-ThreatViewURLBlockList",
+"defaultValue": "Import-TI Proofpoint Emerging Threats Compromised Hosts",
 "type": "string"
 },
       "BatchImportPlaybookName": {
